@@ -24,6 +24,8 @@ func (service *Service) GetItems(c *gin.Context) {
 		log.Fatal(err)
 	}
 
+	log.Println(idArray.Id)
+
 	fmt.Println(string(service.JsonParser(service.Parser(idArray.Id))))
 
 }

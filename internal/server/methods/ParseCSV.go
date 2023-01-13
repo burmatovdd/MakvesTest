@@ -19,16 +19,21 @@ func (service *Service) Parser(idArray []int) Result {
 
 	for {
 		record, e := reader.Read()
+		if record == nil {
+			break
+		}
 		if e != nil {
 			panic(e)
 		}
 
-		answer, id := service.CheckId(record, idArray)
-		if answer {
-			result.Result = append(result.Result, Item{
-				Id:   id,
-				Info: record,
-			})
+		if record[0] != "#" {
+			answer, id := service.CheckId(record, idArray)
+			if answer {
+				result.Result = append(result.Result, Item{
+					Id:   id,
+					Info: record,
+				})
+			}
 		}
 	}
 	return result

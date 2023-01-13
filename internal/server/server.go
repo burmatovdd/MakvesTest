@@ -17,7 +17,7 @@ type Handler interface {
 func (service *Service) HandleFunc() {
 	method := methods.Service{}
 	router := gin.Default()
-	router.GET("api/get-items", method.GetItems)
+	router.GET("get-items", method.GetItems)
 	err := router.Run(":8080")
 	if err != nil {
 		fmt.Println("err: ", err)
